@@ -4,8 +4,17 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+var passComponents = {
+  lowercase: 'abcdefghijklmnopqrstuvwxyz',
+  uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  number: '0123456789',
+  specialcharacters: "!@#$%^&*()_-+=<>/?[]{}\~`:;",
+};
+
 // Set functions that are later called
 function generatePassword() {
+  var randompassword = "";
+
   var passlength = prompt("What length would you like the password to be?(amount of characters)");
   if (passlength < 8) {
     alert("Length must be at least 8 characters");
@@ -17,19 +26,35 @@ function generatePassword() {
     alert("Must be a number");
   }
 
-  var charactertype1 = confirm("Would you like to include lowercase characters?");
-  var charactertype2 = confirm("Would you like to include uppercase characters?");
-  var charactertype3 = confirm("Would you like to include numbers?");
-  var charactertype4 = confirm("Would you like to include special characters?");
-  console.log(charactertype);
+  var lowercase = confirm("Would you like to include lowercase characters?");
+  if (lowercase) {
+    randompassword += passComponents.lowercase;
+  };
 
+  var uppercase = confirm("Would you like to include uppercase characters?");
+  if (uppercase) {
+    randompassword += passComponents.uppercase;
+  };
 
+  var numbers = confirm("Would you like to include numbers?");
+  if (numbers) {
+    randompassword += passComponents.number;
+  };
 
-  console.log(passlength);
+  var specialcharacters = confirm("Would you like to include special characters?");
+  if (specialcharacters) {
+    randompassword += passComponents.specialcharacters;
+  };
+
+  for (let i = 0; i < length; i++) {
+    password += randompassword[Math.floor(Math.random() * randompassword.length)]
+  }
 }
 
+
+
 // Write password to the #password input
-function writePassword() {
+ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
